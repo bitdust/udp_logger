@@ -1,11 +1,14 @@
 from bottle import route, run, response
 import my_settings
 import socket
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 @route('/read_log')
 def read_log():
-    log_file = open("log.txt", 'r')
+    log_file = open(os.path.join(BASE_DIR, "log.txt"), 'r')
     log_str = log_file.read()
     log_file.close()
     response.content_type = "text/plain"
@@ -14,7 +17,7 @@ def read_log():
 
 @route('/clear_log')
 def clear_log():
-    open("log.txt", 'w').close()
+    open(os.path.join(BASE_DIR, "log.txt"), 'w').close()
     response.content_type = "text/plain"
     return "done"
 
@@ -28,7 +31,7 @@ def test_log():
 
 @route('/readme')
 def about():
-    log_file = open("readme.txt", 'r')
+    log_file = open(os.path.join(BASE_DIR, "readme.txt"), 'r')
     log_str = log_file.read()
     response.content_type = "text/plain"
     return log_str + "udp port=" + str(my_settings.UDP_PORT)

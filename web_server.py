@@ -1,3 +1,5 @@
+from gevent import monkey
+monkey.patch_all()
 from bottle import route, run, response
 import my_settings
 import socket
@@ -36,4 +38,4 @@ def about():
     response.content_type = "text/plain"
     return log_str + "udp port=" + str(my_settings.UDP_PORT)
 
-run(host=my_settings.WEB_IP, port=my_settings.WEB_PORT)
+run(host=my_settings.WEB_IP, port=my_settings.WEB_PORT, server='gevent')

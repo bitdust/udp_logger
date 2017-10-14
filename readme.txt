@@ -14,7 +14,7 @@ send a test message to local udp port
 some help message
 
 =======how to deploy=======
-0.requires python3.6+ & python3-bottle
+0.requires python3.6+ & python3-bottle & python3-gevent
 1.modify my_settings.py
 2.run udp_server.py & web_server.py
 3.test the service by access /test_log or send a simple string to the udp port
